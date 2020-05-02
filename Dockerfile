@@ -7,7 +7,7 @@ COPY --chown=nobody config/ /
 
 # crond needs root, so install dcron and cap package and set the capabilities
 # on dcron binary https://github.com/inter169/systs/blob/master/alpine/crond/README.md
-RUN apk add --no-cache dcron libcap && \
+RUN apk add --no-cache dcron libcap ghostscript && \
     chown nobody:nobody /usr/sbin/crond && \
     setcap cap_setgid=ep /usr/sbin/crond
 
