@@ -11,15 +11,10 @@ RUN apk add --no-cache dcron libcap && \
     chown nobody:nobody /usr/sbin/crond && \
     setcap cap_setgid=ep /usr/sbin/crond
 
-
-# Set the latest url from https://moodle.org/plugins/view.php?id=522
-# ENV MOOSH_URL=https://moodle.org/plugins/download.php/21420/moosh_moodle38_2020042300.zip
-
-# sudo ln -s $PWD/moosh.php /usr/local/bin/moosh
-
+# Install moosh-cli and its depends
 ENV MOOSH_URL=https://github.com/tmuras/moosh/archive/master.tar.gz
 
-RUN apk add --no-cache php7-xmlwriter && \
+RUN apk add --no-cache php7-xmlwriter php7-posix ncurses postgresql-client && \
     mkdir -p /var/www/moosh/ && \
     curl --location $MOOSH_URL | tar xz --strip-components=1 -C /var/www/moosh/ && \
     apk add --no-cache --virtual .build-deps composer git && \
