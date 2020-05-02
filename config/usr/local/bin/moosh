@@ -1,0 +1,2 @@
+#!/bin/sh
+php /var/www/moosh/moosh.php --moodle-path=/var/www/html "$@"

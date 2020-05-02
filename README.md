@@ -1,20 +1,21 @@
 # Moodle on Alpine Linux
 Moodle setup for Docker, build on [Alpine Linux](http://www.alpinelinux.org/).
-The image is only +/- 35MB large.
+The image is only +/- 70MB large.
 
 Repository: https://github.com/erseco/alpine-moodle
 
 
-* Built on the lightweight image https://github.com/erseco/alpine-php7-webserver
+* Built on the lightweight image [erseco/alpine-php7-webserver](https://github.com/erseco/alpine-php7-webserver)
 * Very small Docker image size (+/-70MB)
 * Uses PHP 7.3 for better performance, lower cpu usage & memory footprint
 * Optimized for 100 concurrent users
 * Optimized to only use resources when there's traffic (by using PHP-FPM's ondemand PM)
 * Use of runit instead of supervisord to reduce memory footprint
-* Configured cron to run as non-privileged user https://github.com/gliderlabs/docker-alpine/issues/381#issuecomment-621946699
+* Configured dcron to run as non-privileged user https://github.com/gliderlabs/docker-alpine/issues/381#issuecomment-621946699
 * docker-compose sample with PostgreSQL
 * Configuration via ENV variables
 * Easily upgradable to new moodle versions
+* Added [moosh](https://moosh-online.com/) for moodle cli administration
 * The servers Nginx, PHP-FPM run under a non-privileged user (nobody) to make it more secure
 * The logs of all the services are redirected to the output of the Docker container (visible with `docker logs -f <container name>`)
 * Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs

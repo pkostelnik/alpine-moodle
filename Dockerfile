@@ -11,6 +11,22 @@ RUN apk add --no-cache dcron libcap && \
     chown nobody:nobody /usr/sbin/crond && \
     setcap cap_setgid=ep /usr/sbin/crond
 
+
+# Set the latest url from https://moodle.org/plugins/view.php?id=522
+# ENV MOOSH_URL=https://moodle.org/plugins/download.php/21420/moosh_moodle38_2020042300.zip
+
+# sudo ln -s $PWD/moosh.php /usr/local/bin/moosh
+
+ENV MOOSH_URL=https://github.com/tmuras/moosh/archive/master.tar.gz
+
+RUN apk add --no-cache php7-xmlwriter && \
+    mkdir -p /var/www/moosh/ && \
+    curl --location $MOOSH_URL | tar xz --strip-components=1 -C /var/www/moosh/ && \
+    apk add --no-cache --virtual .build-deps composer git && \
+    cd /var/www/moosh/ && \
+    composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --no-suggest --optimize-autoloader && \
+    apk del .build-deps
+
 USER nobody
 
 # Change MOODLE_38_STABLE for new versions
