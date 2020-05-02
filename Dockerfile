@@ -11,6 +11,17 @@ RUN apk add --no-cache dcron libcap ghostscript && \
     chown nobody:nobody /usr/sbin/crond && \
     setcap cap_setgid=ep /usr/sbin/crond
 
+# Install moosh-cli and its depends
+ENV MOOSH_URL=https://github.com/tmuras/moosh/archive/master.tar.gz
+
+RUN apk add --no-cache php7-xmlwriter php7-posix ncurses postgresql-client && \
+    mkdir -p /var/www/moosh/ && \
+    curl --location $MOOSH_URL | tar xz --strip-components=1 -C /var/www/moosh/ && \
+    apk add --no-cache --virtual .build-deps composer git && \
+    cd /var/www/moosh/ && \
+    composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --no-suggest --optimize-autoloader && \
+    apk del .build-deps
+
 USER nobody
 
 # Change MOODLE_38_STABLE for new versions
