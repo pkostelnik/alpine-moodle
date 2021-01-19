@@ -39,8 +39,10 @@ services:
       - SMTP_PROTOCOL=tls
       - MOODLE_MAIL_NOREPLY_ADDRESS=noreply@localhost
       - MOODLE_MAIL_PREFIX=[moodle]
-    ports:
-      - 80:8080
+#    ports:
+#      - 80:8080
+    expose:
+      - 80
     volumes:
       - moodledata:/var/www/moodledata
     depends_on:
