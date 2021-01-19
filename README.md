@@ -1,5 +1,5 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/erseco/alpine-moodle.svg)](https://hub.docker.com/r/erseco/alpine-moodle/)
-[![Docker image layers](https://images.microbadger.com/badges/image/erseco/alpine-moodle.svg)](https://microbadger.com/images/erseco/alpine-moodle)
+[![Docker Pulls](https://img.shields.io/docker/pulls/pkostelnik/moodle.svg)](https://hub.docker.com/r/pkostelnik/moodle/)
+[![Docker image layers](https://images.microbadger.com/badges/image/pkostelnik/moodle.svg)](https://microbadger.com/images/pkostelnik/moodle)
 ![nginx 1.18.0](https://img.shields.io/badge/nginx-1.18-brightgreen.svg)
 ![php 7.3](https://img.shields.io/badge/php-7.3-brightgreen.svg)
 ![moodle-3.10](https://img.shields.io/badge/moodle-3.10-yellow)
@@ -7,13 +7,13 @@
 
 # Moodle on Alpine Linux
 Moodle setup for Docker, build on [Alpine Linux](http://www.alpinelinux.org/).
-The image is only +/- 70MB large.
+The image is only +/- 230MB large.
 
-Repository: https://github.com/erseco/alpine-moodle
+Repository: https://github.com/pkostelnik/moodle
 
 
 * Built on the lightweight image https://github.com/erseco/alpine-php7-webserver
-* Very small Docker image size (+/-70MB)
+* Very small Docker image size (+/-230MB)
 * Uses PHP 7.3 for better performance, lower cpu usage & memory footprint
 * Multi-arch support: 386, amd64, arm/v6, arm/v7, arm64, ppc64le, s390x
 * Optimized for 100 concurrent users
@@ -32,6 +32,12 @@ Repository: https://github.com/erseco/alpine-moodle
 Start the Docker containers:
 
     docker-compose up
+
+### in this docker-compose file the port 80 is exposed only !
+comment expose:
+and comment out the port:
+
+to map the port instead of exposing the port
 
 Login on the system using the provided credentials (ENV vars)
 
